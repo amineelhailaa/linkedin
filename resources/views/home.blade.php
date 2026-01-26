@@ -67,13 +67,13 @@
         <!-- Actions -->
         <div class="flex items-center gap-4">
           <a
-            href="#"
+            href="{{  route('login') }}"
             class="hidden rounded-full border-2 border-[#0A66C2] px-6 py-3 text-base font-semibold text-[#0A66C2] hover:bg-[#0A66C2]/5 md:inline-flex"
           >
             Access account
           </a>
           <a
-            href="#"
+            href="{{  route('register') }}"
             class="inline-flex rounded-full bg-[#0A66C2] px-7 py-3 text-base font-semibold text-white hover:bg-[#004182]"
           >
             Join now
