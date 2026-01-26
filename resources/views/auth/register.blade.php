@@ -112,7 +112,7 @@
             <label for="role" class="block text-sm font-medium text-slate-700">Role</label>
             <select
               id="role"
-              name="role"
+              name="type"
               required
               class="mt-2 w-full rounded-md border border-slate-400 bg-white px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
             >
