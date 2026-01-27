@@ -17,6 +17,4 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/browse', function(){
-    return view('browse');
-});
+Route::get('/browse',[UserController::class,'index']);
