@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Models\User;
+use App\Models\User;
+
 
 class UserController extends Controller
 {
     //
 
     public function index(){
-        $users = User::all() ?? [];
-        view('browse',['users'=> $users])
+        $users = User::all();
+        view('home',compact('users'));
     }
 
 
