@@ -42,6 +42,9 @@ class RegisteredUserController extends Controller
            $pic_path= $request->file('avatar')->store('avatars','public');
         }
 
+
+        
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,

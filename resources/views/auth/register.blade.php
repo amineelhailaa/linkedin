@@ -8,7 +8,7 @@
       </div>
     </header>
 
-    <!-- Main -->
+    <!-- Main -->   
     <main class="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center px-6">
       <h1 class="mt-2 text-center text-4xl font-light tracking-tight text-slate-800 sm:text-5xl">
         Make the most of your professional life
@@ -20,7 +20,8 @@
         aria-label="Join card"
       >
         <!-- ✅ Real form -->
-        <form class="space-y-5" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+        <form class="space-y-5" action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
+            @csrf
           <!-- Profile picture upload -->
           <div class="flex flex-col items-center gap-3">
             <div class="relative">
@@ -91,6 +92,27 @@
               <input
                 id="passwordInput"
                 name="password"
+                type="password"
+                required
+                minlength="6"
+                class="w-full rounded-md border border-slate-400 px-4 py-3 pr-16 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                placeholder="••••••••"
+              />
+              <button
+                id="togglePassword"
+                type="button"
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-base font-semibold text-[#0A66C2] hover:underline"
+              >
+                Show
+              </button>
+            </div>
+          </div>
+          <div>
+            <label for="password_confirmation" class="block text-sm font-medium text-slate-700">Password</label>
+            <div class="relative mt-2">
+              <input
+                id="password_confirmation"
+                name="password_confirmation"
                 type="password"
                 required
                 minlength="6"
