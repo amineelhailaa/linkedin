@@ -180,13 +180,14 @@
                   <div class="h-16 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400"></div>
 
                   <div class="-mt-10 flex justify-center">
-                    <div class="h-20 w-20 rounded-full border-4 border-white bg-slate-200"></div>
+                    <div class="h-20 w-20 rounded-full border-4 border-white bg-slate-200"><img src="	{{ asset('storage/'.$user->pic_path) }}  "></div>
+
                   </div>
 
                   <div class="px-4 pb-4 pt-2 text-center">
                     <h3 class="mt-1 text-sm font-semibold text-slate-900">{{ $user->name }}</h3>
                     <p class="mt-0.5 text-xs text-slate-600">
-                      Développeur Full Stack | YouCode - UM6P | OCP
+                    		{{$user->bio}}
                     </p>
 
                     <div class="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500">
