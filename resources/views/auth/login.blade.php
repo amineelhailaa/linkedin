@@ -104,7 +104,7 @@
 
     <p class="pt-2 text-center text-base text-slate-700">
       Already on LinkedIn?
-      <a href="#" class="font-semibold text-[#0A66C2] hover:underline">Sign in</a>
+      <a href="{{route('register')}}" class="font-semibold text-[#0A66C2] hover:underline">Sign in</a>
     </p>
   </form>
 </section>

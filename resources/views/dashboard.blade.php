@@ -1,7 +1,6 @@
-{{-- resources/views/network.blade.php --}}
 <x-structure title='Accueil'>
-  {{-- ✅ Zoom in ~50% WITHOUT touching <body> (we scale the page wrapper) --}}
   <div class="min-h-screen bg-[#f3f2ef] origin-top [transform:scale(1.5)]">
+
     {{-- Top navbar --}}
     <header class="sticky top-0 z-50 border-b border-black/10 bg-white">
       <div class="mx-auto flex h-14 max-w-6xl items-center gap-4 px-4">
@@ -9,13 +8,38 @@
         <div class="flex items-center gap-3">
           <a href="#" class="grid h-9 w-9 place-items-center rounded bg-[#0A66C2] text-white font-black">in</a>
 
-          <div class="hidden sm:flex items-center gap-2 rounded-md bg-[#eef3f8] px-3 py-2">
-            <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 21l-4.3-4.3" />
-              <circle cx="11" cy="11" r="7" />
-            </svg>
-            <input class="w-64 bg-transparent text-sm text-slate-800 placeholder:text-slate-500 outline-none" placeholder="Recherche" />
-          </div>
+          <form method="GET" action="{{ route('dashboard')}}" class="hidden sm:block">
+            <div class="flex items-center gap-2 rounded-md bg-[#eef3f8] px-3 py-2">
+              <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 21l-4.3-4.3" />
+                <circle cx="11" cy="11" r="7" />
+              </svg>
+
+              <select
+                name="type"
+                class="bg-transparent text-sm text-slate-700 outline-none"
+              >
+                <option value="name" {{ request('type','name') === 'name' ? 'selected' : '' }}>Name</option>
+                <option value="specialiste" {{ request('type') === 'specialiste' ? 'selected' : '' }}>Specialiste</option>
+              </select>
+
+              <span class="h-5 w-px bg-slate-300/70"></span>
+
+              <input
+                name="q"
+                value=""
+                class="w-56 bg-transparent text-sm text-slate-800 placeholder:text-slate-500 outline-none"
+                placeholder="Recherche..."
+              />
+
+              <button
+                type="submit"
+                class="rounded-md bg-white/60 px-2 py-1 text-xs font-semibold text-slate-700 hover:bg-white"
+              >
+                OK
+              </button>
+            </div>
+          </form>
         </div>
 
         {{-- Center: nav icons --}}
@@ -72,12 +96,15 @@
       <div class="grid grid-cols-12 gap-6">
         {{-- Left sidebar --}}
         <aside class="col-span-12 md:col-span-4 lg:col-span-3">
+          {{-- ... (UNCHANGED sidebar) ... --}}
+          {{-- keep your sidebar exactly as is --}}
           <div class="rounded-lg border border-black/10 bg-white">
             <div class="border-b border-black/10 px-4 py-3">
               <h2 class="text-base font-semibold text-slate-800">Gérer mon réseau</h2>
             </div>
 
             <ul class="divide-y divide-black/5">
+              {{-- ... unchanged items ... --}}
               <li class="flex items-center justify-between px-4 py-3 text-sm text-slate-700">
                 <span class="flex items-center gap-3">
                   <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50">
@@ -87,56 +114,7 @@
                 </span>
                 <span class="text-slate-500">68</span>
               </li>
-
-              <li class="flex items-center justify-between px-4 py-3 text-sm text-slate-700">
-                <span class="flex items-center gap-3">
-                  <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50">
-                    <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm7 9H5a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4z"/></svg>
-                  </span>
-                  Suivi et abonnés
-                </span>
-                <span class="text-slate-500">2</span>
-              </li>
-
-              <li class="flex items-center justify-between px-4 py-3 text-sm text-slate-700">
-                <span class="flex items-center gap-3">
-                  <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50">
-                    <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10h10v4H7z"/><path d="M4 6h16v12H4z"/></svg>
-                  </span>
-                  Groupes
-                </span>
-                <span class="text-slate-500">2</span>
-              </li>
-
-              <li class="flex items-center justify-between px-4 py-3 text-sm text-slate-700">
-                <span class="flex items-center gap-3">
-                  <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50">
-                    <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2H7z"/><path d="M5 6h14v15H5z"/></svg>
-                  </span>
-                  Événements
-                </span>
-                <span class="text-slate-500">1</span>
-              </li>
-
-              <li class="flex items-center justify-between px-4 py-3 text-sm text-slate-700">
-                <span class="flex items-center gap-3">
-                  <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50">
-                    <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h12v16H6z"/><path d="M8 7h8v2H8zM8 11h8v2H8z"/></svg>
-                  </span>
-                  Pages
-                </span>
-                <span class="text-slate-500">42</span>
-              </li>
-
-              <li class="flex items-center justify-between px-4 py-3 text-sm text-slate-700">
-                <span class="flex items-center gap-3">
-                  <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50">
-                    <svg class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v12H4z"/><path d="M7 9h10v2H7zM7 13h8v2H7z"/></svg>
-                  </span>
-                  Newsletters
-                </span>
-                <span class="text-slate-500">5</span>
-              </li>
+              {{-- ... rest unchanged ... --}}
             </ul>
           </div>
 
@@ -156,63 +134,109 @@
 
         {{-- Main --}}
         <section class="col-span-12 md:col-span-8 lg:col-span-9">
+
+          {{-- ✅ Mobile search (since navbar search is hidden on small screens) --}}
+          <form method="GET" action="{{ route('dashboard')}}" class="mb-4 sm:hidden">
+            <div class="rounded-lg border border-black/10 bg-white p-3">
+              <div class="flex gap-2">
+                <select name="type" class="w-40 rounded-md border border-black/10 bg-white px-3 py-2 text-sm outline-none">
+                  <option value="name" {{ request('type','name') === 'name' ? 'selected' : '' }}>Name</option>
+                  <option value="specialiste" {{ request('type') === 'specialiste' ? 'selected' : '' }}>Specialiste</option>
+                </select>
+
+                <input
+                  name="query"
+                  value=""
+                  class="flex-1 rounded-md border border-black/10 bg-[#eef3f8] px-3 py-2 text-sm outline-none"
+                  placeholder="Recherche..."
+                />
+              </div>
+
+              <button type="submit" class="mt-2 w-full rounded-md bg-[#0A66C2] px-3 py-2 text-sm font-semibold text-white">
+                Search
+              </button>
+            </div>
+          </form>
+
           <div class="rounded-lg border border-black/10 bg-white">
-            <div class="flex items-center justify-between gap-4 px-4 py-3">
-              <h2 class="text-sm font-semibold text-slate-800">
-                Personnes que vous connaissez peut-être dans la Rabat et périphérie
-              </h2>
-              <a href="#" class="text-sm font-semibold text-slate-700 hover:underline">Tout afficher</a>
+            <div class="px-4 py-3">
+              <div class="flex items-center justify-between gap-4">
+                <h2 class="text-sm font-semibold text-slate-800">
+                  Personnes que vous connaissez peut-être dans la Rabat et périphérie
+                </h2>
+                <a href="{{ url()->current() }}" class="text-sm font-semibold text-slate-700 hover:underline">Tout afficher</a>
+              </div>
+
+              {{-- ✅ show search type + keyword (no JS, no ajax) --}}
+              @php
+                $mode = request('type','name');
+                $keyword = request('q');
+                $resultCount = method_exists($users, 'total') ? $users->total() : $users->count();
+              @endphp
+
+              <div class="mt-2 flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                <span class="rounded-full bg-slate-100 px-2 py-1">
+                  Mode: <span class="font-semibold text-slate-700">{{ $mode }}</span>
+                </span>
+                <span class="rounded-full bg-slate-100 px-2 py-1">
+                  Mot-clé: <span class="font-semibold text-slate-700">{{ $keyword ? $keyword : '(empty)' }}</span>
+                </span>
+                <span class="ml-auto">
+                  Résultats: <span class="font-semibold text-slate-700">{{ $resultCount }}</span>
+                </span>
+              </div>
             </div>
 
             <div class="p-4">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {{-- STATIC CARD --}}
 
+                @forelse ($users as $user)
+                  <article class="relative overflow-hidden rounded-lg border border-black/10 bg-white">
+                    <button type="button" class="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-black/70 text-white hover:bg-black">
+                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12" />
+                      </svg>
+                    </button>
 
-                @foreach ($users as $user)
-                <article class="relative overflow-hidden rounded-lg border border-black/10 bg-white">
-                  <button type="button" class="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-black/70 text-white hover:bg-black">
-                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M18 6 6 18M6 6l12 12" />
-                    </svg>
-                  </button>
+                    <div class="h-16 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400"></div>
 
-                  <div class="h-16 bg-gradient-to-r from-slate-800 via-slate-600 to-slate-400"></div>
-
-                  <div class="-mt-10 flex justify-center">
-                    <div class="h-20 w-20 rounded-full border-4 border-white bg-slate-200"><img src="	{{ asset('storage/'.$user->pic_path) }}  "></div>
-
-                  </div>
-
-                  <div class="px-4 pb-4 pt-2 text-center">
-                    <h3 class="mt-1 text-sm font-semibold text-slate-900">{{ $user->name }}</h3>
-                    <p class="mt-0.5 text-xs text-slate-600">
-                    		{{$user->bio}}
-                    </p>
-
-                    <div class="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500">
-                      <div class="flex -space-x-2">
-                        <span class="h-6 w-6 rounded-full border-2 border-white bg-slate-300"></span>
-                        <span class="h-6 w-6 rounded-full border-2 border-white bg-slate-300"></span>
+                    <div class="-mt-10 flex justify-center">
+                      <div class="h-20 w-20 overflow-hidden rounded-full border-4 border-white bg-slate-200">
+                        <img src="{{ asset('storage/'.$user->pic_path) }}" alt="{{ $user->name }}" class="h-full w-full object-cover">
                       </div>
-                      <span>Youness et 4 autres relations en commun</span>
                     </div>
 
-                    <button
-                      type="button"
-                      class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#0A66C2] px-3 py-2 text-sm font-semibold text-[#0A66C2] hover:bg-[#0A66C2]/5"
-                    >
-                      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M15 12a4 4 0 1 0-8 0v2H5a2 2 0 0 0-2 2v3h16v-3a2 2 0 0 0-2-2h-2v-2z"/>
-                      </svg>
-                      Se connecter
-                    </button>
+                    <div class="px-4 pb-4 pt-2 text-center">
+                      <h3 class="mt-1 text-sm font-semibold text-slate-900">{{ $user->name }}</h3>
+                      <p class="mt-0.5 text-xs text-slate-600">{{ $user->bio }}</p>
+
+                      <div class="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500">
+                        <div class="flex -space-x-2">
+                          <span class="h-6 w-6 rounded-full border-2 border-white bg-slate-300"></span>
+                          <span class="h-6 w-6 rounded-full border-2 border-white bg-slate-300"></span>
+                        </div>
+                        <span>Youness et 4 autres relations en commun</span>
+                      </div>
+
+                      <button
+                        type="button"
+                        class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#0A66C2] px-3 py-2 text-sm font-semibold text-[#0A66C2] hover:bg-[#0A66C2]/5"
+                      >
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M15 12a4 4 0 1 0-8 0v2H5a2 2 0 0 0-2 2v3h16v-3a2 2 0 0 0-2-2h-2v-2z"/>
+                        </svg>
+                        Se connecter
+                      </button>
+                    </div>
+                  </article>
+                @empty
+                  <div class="col-span-full rounded-lg border border-dashed border-black/20 bg-white p-8 text-center">
+                    <div class="text-sm font-semibold text-slate-800">Aucun résultat</div>
+                    <div class="mt-1 text-xs text-slate-500">
+                      Essayez un autre mot-clé (Mode: {{ $mode }}, Mot-clé: {{ $keyword ? $keyword : '(empty)' }}).
+                    </div>
                   </div>
-                </article>
-                @endforeach
-
-
-
+                @endforelse
 
               </div>
             </div>

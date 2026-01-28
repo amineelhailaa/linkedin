@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'type',
         'pic_path',
-        'bio'
+        'bio',
+        'specialiste'
     ];
 
     /**

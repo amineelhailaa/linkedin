@@ -156,6 +156,22 @@
             ></textarea>
           </div>
 
+
+<!-- specialiste -->
+          <div>
+            <label for="specialiste" class="block text-sm font-medium text-slate-700">Specialiste</label>
+            <input
+              id="specialiste"
+              name="specialiste"
+
+              class="mt-2 w-full resize-none rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+              placeholder="specialiste"
+            />
+          </div>
+
+
+
+
           <!-- Legal -->
           <p class="text-center text-sm leading-relaxed text-slate-500">
             By clicking <span class="font-medium">Start</span>, you agree to the LinkedIn

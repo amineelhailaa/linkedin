@@ -20,10 +20,9 @@ return new class extends Migration
             $table->text('bio')->nullable();
             $table->string('pic_path')->nullable();
             $table->enum('type',['recruteur','candidat'])->nullable();
+            $table->string('specialiste')->nullable();
             $table->rememberToken();
             $table->timestamps();
-        
-
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
