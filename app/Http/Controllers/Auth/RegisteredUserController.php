@@ -37,6 +37,9 @@ class RegisteredUserController extends Controller
             'bio'=> ['string'],
             'avatar' => ['image','nullable']
         ]);
+
+
+        
         $pic_path = null;
         if($request->hasFile('avatar')){
            $pic_path= $request->file('avatar')->store('avatars','public');

@@ -8,14 +8,18 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    //
-
-    public function index($type=null,$query=null){
+    //code
+    public function index(Request $get_request){
         $users = null;
+        $type = $get_request->input('type') ?? null;
+        $query = $get_request->input('q') ?? null ; 
+        // echo $query;
         if(isset($type)&& isset($query)){
-
-            $users = User::where('',$type? 'specialite' : 'name')->get();
-            //just making the default is name .
+                // echo "amine elhailaa";
+            $users = User::where("{$type}", 'LIKE', "%{$query}%")->get(); 
+            //does laravel sanitize this , cuz i didnt validate the type so they can pass another column and kick me , 
+            //iwill add a if else but it will be hard coded in a gro projecgt
+            //just making the default is name.
         } else {
                 // code...
                     $users = User::all();
@@ -23,6 +27,7 @@ class UserController extends Controller
 
         return view('dashboard',compact('users'));
     }
+
 
 
 

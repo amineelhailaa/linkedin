@@ -16,4 +16,4 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/dashboard/{type?}/{query?}',[UserController::class,'index'])->name('dashboard');
+Route::get('/dashboard',[UserController::class,'index'])->name('dashboard');
