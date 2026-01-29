@@ -30,6 +30,11 @@ class UserController extends Controller
 
 
 
+    public function profile(){
+        echo 'amine';
+    }
+
+
 
 
 }
