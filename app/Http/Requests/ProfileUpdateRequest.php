@@ -5,6 +5,8 @@ namespace App\Http\Requests;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
+
 
 class ProfileUpdateRequest extends FormRequest
 {
@@ -25,7 +27,12 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
-            'specialiste'=>['string']
+            'specialiste'=>['string'],
+            'bio'=>['string'],
+            'old_password'=>['required','current_password'],
+            'password'=>['nullable', 'confirmed',Rules\Password::defaults()],
+            'avatar'=>['image','nullable']
+
         ];
     }
 }
