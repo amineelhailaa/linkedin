@@ -70,9 +70,15 @@
 
         <!-- New Password -->
         <div>
-            <label for="new_password" class="block font-medium mb-1">New Password</label>
-            <input type="password" name="new_password" id="new_password"
+            <label for="password" class="block font-medium mb-1">New Password</label>
+            <input type="password" name="password" id="password"
                    class="w-full border rounded px-4 py-2 focus:outline-none focus:ring" autocomplete="new-password">
+        </div>
+        <!-- confirmed password -->
+        <div>
+            <label for="password_confirmation" class="block font-medium mb-1">New Password</label>
+            <input type="password" name="password_confirmation" id="password_confirmation"
+                   class="w-full border rounded px-4 py-2 focus:outline-none focus:ring" autocomplete="password_confirmation">
         </div>
 
         <!-- Submit -->
