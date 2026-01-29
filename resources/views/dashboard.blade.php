@@ -71,7 +71,7 @@
             <span class="absolute right-5 top-1.5 grid h-4 min-w-[16px] place-items-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">5</span>
           </a>
 
-          <a href="#" class="group hidden md:flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
+          <a href="{{ route('myprofile') }}" class="group hidden md:flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
             <span class="h-5 w-5 rounded-full bg-slate-300"></span>
             <span>Vous</span>
           </a>
