@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
+
 use App\Models\User;
 
 class ProfileController extends Controller
@@ -34,15 +36,26 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        //get data except avatar 
+        $data = $request->safe()->except('pic_path');
+            //if has a file ( can be null means unchanged)
+        if($request->hasFile('pic_path')){
+            $data['pic_path']= $request->file('pic_path')->store('avatars','public');
         }
 
-        $request->user()->save();
+        //check if the user want to change the password
+
+        if($request->filled('password')){
+            $data['password']= Hash::make($request->password);
+        } else {
+            unset($data['password']);
+        }
+
+
+        Auth::user()->update($data);
 
         return Redirect::route('myprofile');
     }
