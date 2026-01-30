@@ -24,6 +24,10 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function discoverProfile($id){
+        $user = User::find($id);
+        return view('profile.discoverProfile',['user'=>$user]);
+    }
 
 
 

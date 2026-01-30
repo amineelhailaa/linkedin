@@ -21,10 +21,7 @@ Route::get('/dashboard',[UserController::class,'index'])->name('dashboard');
 
 
 //to show profiles after 
-Route::get('/profile/{id}',function( $id){
-$user = User::find($id);
-echo $user;
-});
+Route::get('/profile/{id}',[ProfileController::class,'discoverProfile'])->name('discover');
 
 //edit profile my profile
 Route::middleware('auth')->group(function(){
@@ -32,6 +29,7 @@ Route::middleware('auth')->group(function(){
 
 Route::get('/myprofile',[ProfileController::class,'myprofile'])->name('myprofile');
 Route::patch('/myprofile',[ProfileController::class,'update']);
+
 
 
 
