@@ -34,6 +34,7 @@ Route::get('/myprofile',[ProfileController::class,'myprofile'])->name('myprofile
 Route::patch('/myprofile',[ProfileController::class,'update']);
 
 
+
 });
 
 
