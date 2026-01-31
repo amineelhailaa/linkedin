@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('pic_path')->nullable();
             $table->enum('type',['recruteur','candidat'])->nullable();
             $table->string('specialiste')->nullable();
+            $table->string('entreprise')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
