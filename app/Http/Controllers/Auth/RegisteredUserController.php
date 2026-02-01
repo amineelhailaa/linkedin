@@ -35,18 +35,19 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'type' => ['string','in:recruteur,candidat'],
             'bio'=> ['string'],
-            'avatar' => ['image','nullable']
+            'avatar' => ['image','nullable'],
+            'entreprise'=>['required_if:type,recruteur','string','nullable'],
+            'specialite'=>['required_if:type,candidat','string','nullable'],
+            'profile_title'=>['required_if:type,candidat','string','nullable']
         ]);
 
-
-        
         $pic_path = null;
         if($request->hasFile('avatar')){
            $pic_path= $request->file('avatar')->store('avatars','public');
         }
 
 
-        
+
 
         $user = User::create([
             'name' => $request->name,
@@ -55,9 +56,18 @@ class RegisteredUserController extends Controller
             'bio' => $request->bio,
             'type'=> $request->type,
             'pic_path' => $pic_path,
-            'specialiste' => $request->specialiste
         ]);
 
+        if($user->type == 'recruteur'){
+            $user->recruteurProfile()->create([
+                'entreprise'=> $request->entreprise
+            ]);
+        } elseif ($user->type == 'candidat'){
+            $user->candidatProfile()->create([
+                'specialite'=> $request->specialite,
+                'profile_title'=> $request->profile_title
+            ]);
+        }
         event(new Registered($user));
 
         Auth::login($user);
