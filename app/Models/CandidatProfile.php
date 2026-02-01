@@ -8,7 +8,7 @@ class CandidatProfile extends Model
 {
     //
 protected $fillable = [
-    'speciality',
+    'specialite',
     'profile_title'];
 public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
 {
