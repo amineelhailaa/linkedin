@@ -7,4 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 class CandidatProfile extends Model
 {
     //
+protected $fillable = [
+    'speciality',
+    'profile_title'];
+public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+{
+    return $this->belongsTo(User::class);
+}
+public function experience(){
+    return $this->hasMany(Experience::class);
+}
+
+public function formation()
+{
+    return $this->hasMany(Formation::class);
+}
+
+public function competence()
+{
+    return $this->hasMany(Competence::class);
+}
 }

@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RecruteurProfile extends Model
+class Experience extends Model
 {
+    protected $fillable = ['entreprise','duree'];
     //
-    protected $fillable = ['entreprise'];
-
 }
