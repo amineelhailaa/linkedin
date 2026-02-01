@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('entreprise');
             $table->string('contrat');
             $table->string('titre');
-            $table->string('description');
+            $table->text('description');
             $table->string('image');
             $table->enum('status',['open','closed']);
             $table->timestamps();
