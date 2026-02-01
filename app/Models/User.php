@@ -60,9 +60,14 @@ class User extends Authenticatable
         return $this->hasOne(RecruteurProfile::class);
     }
 
-    public function friendships(): HasMany
+    public function sentFriendship(): HasMany
     {
-        return $this->hasMany(Friendship::class);
+        return $this->hasMany(Friendship::class,'sender_id');
+    }
+
+    public function receivedFriendship(): HasMany
+    {
+        return $this->hasMany(Friendship::class,'receiver_id');
     }
 
 
