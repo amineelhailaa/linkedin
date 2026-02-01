@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('formations', function (Blueprint $table) {
             $table->id();
-
+            $table->foreignId('candidat_profile_id')->constrained()->cascadeOnDelete();
+            $table->string('diplome');
+            $table->string('ecole');
+            $table->string('year');
             $table->timestamps();
         });
     }
