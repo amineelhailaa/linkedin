@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class JobOffer extends Model
 {
@@ -19,6 +20,11 @@ class JobOffer extends Model
     public function recruteurProfile(): BelongsTo
     {
         return $this->belongsTo(RecruteurProfile::class);
+    }
+
+    public function applications(): HasMany
+    {
+        return $this->hasMany(Application::class);
     }
     //
 }
