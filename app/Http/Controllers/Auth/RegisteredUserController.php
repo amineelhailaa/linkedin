@@ -60,7 +60,7 @@ class RegisteredUserController extends Controller
 
         if($user->type == 'recruteur'){
             $user->recruteurProfile()->create([
-                'entreprise'=> $request->entreprise
+                'entreprise'=>$request->entreprise
             ]);
         } elseif ($user->type == 'candidat'){
             $user->candidatProfile()->create([
