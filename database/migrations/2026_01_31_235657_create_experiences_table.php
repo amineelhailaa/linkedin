@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidat_profile_id')->constrained()->cascadeOnDelete();
+            $table->string('entreprise');
+            $table->string('duree');
             $table->timestamps();
         });
     }
