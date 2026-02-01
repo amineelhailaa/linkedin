@@ -16,7 +16,7 @@ class RecruteurProfile extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function jobOffer(): HasMany
+    public function jobOffers(): HasMany
     {
         return $this->hasMany(JobOffer::class);
     }
