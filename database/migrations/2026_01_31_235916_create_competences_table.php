@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('competences', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('candidat_profile_id')->constrained()->cascadeOnDelete();
+            $table->string('titre');
             $table->timestamps();
         });
     }
