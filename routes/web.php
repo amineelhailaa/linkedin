@@ -20,7 +20,7 @@ require __DIR__.'/auth.php';
 Route::get('/dashboard',[UserController::class,'index'])->name('dashboard');
 
 
-//to show profiles after 
+//to show profiles after
 Route::get('/profile/{id}',[ProfileController::class,'discoverProfile'])->name('discover');
 
 //edit profile my profile
@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function(){
 
 
 Route::get('/myprofile',[ProfileController::class,'myprofile'])->name('myprofile');
-Route::patch('/myprofile',[ProfileController::class,'update']);
+Route::patch('/myprofile',[ProfileController::class,'update'])->name('myprofile/save');
 
 
 
