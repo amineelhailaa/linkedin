@@ -27,12 +27,14 @@ class ProfileUpdateRequest extends FormRequest
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
-            'specialiste'=>['string'],
             'bio'=>['string'],
-            'old_password'=>['required','current_password'],
-            'password'=>['nullable', 'confirmed',Rules\Password::defaults()],
-            'avatar'=>['image','nullable']
-
+            'avatar'=>['image','nullable'],
+            'entreprise'=>['string','nullable'],
+            'profile_title'=>['string','nullable'],
+            'specialite'=>['string','nullable'],
+            'formations'=>['array','nullable'],
+            'experiences'=>['array','nullable'],
+            'competences'=>['array','nullable'],
         ];
     }
 }
