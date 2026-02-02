@@ -8,7 +8,7 @@
       </div>
     </header>
 
-    <!-- Main -->   
+    <!-- Main -->
     <main class="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center px-6">
       <h1 class="mt-2 text-center text-4xl font-light tracking-tight text-slate-800 sm:text-5xl">
         Make the most of your professional life
@@ -59,18 +59,18 @@
             <p class="text-xs text-slate-500">PNG / JPG recommended. Preview updates instantly.</p>
           </div>
 
-          <!-- Full name -->
-          <div>
-            <label for="fullName" class="block text-sm font-medium text-slate-700">Full name</label>
-            <input
-              id="fullName"
-              name="name"
-              type="text"
-              required
-              class="mt-2 w-full rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
-              placeholder="e.g. Amine B."
-            />
-          </div>
+            <!--full name or just myname :))-->
+            <div>
+                <label for="fullName" class="block text-sm font-medium text-slate-700">Full name</label>
+                <input
+                    id="fullName"
+                    name="name"
+                    type="text"
+                    required
+                    class="mt-2 w-full rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                    placeholder="e.g. Amine B."
+                />
+            </div>
 
           <!-- Email -->
           <div>
@@ -108,7 +108,7 @@
             </div>
           </div>
           <div>
-            <label for="password_confirmation" class="block text-sm font-medium text-slate-700">Password</label>
+            <label for="password_confirmation" class="block text-sm font-medium text-slate-700">Confirmation Password</label>
             <div class="relative mt-2">
               <input
                 id="password_confirmation"
@@ -119,13 +119,7 @@
                 class="w-full rounded-md border border-slate-400 px-4 py-3 pr-16 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
                 placeholder="••••••••"
               />
-              <button
-                id="togglePassword"
-                type="button"
-                class="absolute right-3 top-1/2 -translate-y-1/2 text-base font-semibold text-[#0A66C2] hover:underline"
-              >
-                Show
-              </button>
+
             </div>
           </div>
 
@@ -156,17 +150,40 @@
             ></textarea>
           </div>
 
-
-<!-- specialiste -->
-          <div>
-            <label for="specialiste" class="block text-sm font-medium text-slate-700">Specialiste</label>
+          <!-- Recruteur fields -->
+          <div id="recruteurFields" class="hidden">
+            <label for="entreprise" class="block text-sm font-medium text-slate-700">Entreprise</label>
             <input
-              id="specialiste"
-              name="specialiste"
-
-              class="mt-2 w-full resize-none rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
-              placeholder="specialiste"
+              id="entreprise"
+              name="entreprise"
+              type="text"
+              class="mt-2 w-full rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+              placeholder="Entreprise"
             />
+          </div>
+
+          <!-- Candidat fields -->
+          <div id="candidatFields" class="hidden space-y-5">
+            <div>
+              <label for="profileTitle" class="block text-sm font-medium text-slate-700">Titre du profil</label>
+              <input
+                id="profileTitle"
+                name="profile_title"
+                type="text"
+                class="mt-2 w-full rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                placeholder="Titre du profil"
+              />
+            </div>
+            <div>
+              <label for="specialite" class="block text-sm font-medium text-slate-700">Specialite</label>
+              <input
+                id="specialite"
+                name="specialite"
+                type="text"
+                class="mt-2 w-full rounded-md border border-slate-400 px-4 py-3 text-base outline-none focus:border-[#0A66C2] focus:ring-2 focus:ring-[#0A66C2]/20"
+                placeholder="Specialite"
+              />
+            </div>
           </div>
 
 
@@ -301,12 +318,29 @@
 
       // Password show/hide
       const passwordInput = document.getElementById("passwordInput");
+      const confirmationInput = document.getElementById("password_confirmation");
       const togglePassword = document.getElementById("togglePassword");
 
       togglePassword.addEventListener("click", () => {
         const isHidden = passwordInput.type === "password";
         passwordInput.type = isHidden ? "text" : "password";
-        togglePassword.textContent = isHidden ? "Hide" : "Show";
+        confirmationInput.type = isHidden ? "text" : "password";
+
+          togglePassword.textContent = isHidden ? "Hide" : "Show";
       });
+
+      // Role-based fields
+      const roleSelect = document.getElementById("role");
+      const recruteurFields = document.getElementById("recruteurFields");
+      const candidatFields = document.getElementById("candidatFields");
+
+      const updateRoleFields = () => {
+        const role = roleSelect.value;
+        recruteurFields.classList.toggle("hidden", role !== "recruteur");
+        candidatFields.classList.toggle("hidden", role !== "candidat");
+      };
+
+      roleSelect.addEventListener("change", updateRoleFields);
+      updateRoleFields();
     </script>
 </x-structure>
