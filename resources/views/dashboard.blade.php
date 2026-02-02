@@ -206,7 +206,7 @@
                       </div>
                     </div>
 
-                    <div class="px-4 pb-4 pt-2 text-center"><a href="{{route('discover',$user->id)}}">
+                    <div class="px-4 pb-4 pt-2 text-center"><a href=" {{route('discover',$user->id)}}">
                       <h3 class="mt-1 text-sm font-semibold text-slate-900">{{ $user->name }}</h3></a>
                       <p class="mt-0.5 text-xs text-slate-600">{{ $user->specialiste }}</p>
 
