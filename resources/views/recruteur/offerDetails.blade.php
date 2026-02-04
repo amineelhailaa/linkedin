@@ -1,9 +1,3 @@
 <x-structure>
-	
 
-
-
-
-
-	
 </x-structure>

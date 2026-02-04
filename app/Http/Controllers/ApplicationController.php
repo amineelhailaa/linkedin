@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Application;
-use Illuminate\Http\Request;
 
-class Application extends Controller
+use Illuminate\Http\Request;
+use App\Models\Application;
+use App\Models\JobOffer;
+use Illuminate\Support\Facades\Auth;
+
+class ApplicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +20,9 @@ class Application extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function apply(Offer $offer)
+    public function apply(JobOffer $offer)
     {
-        Auth::user()->candidatProfile->applications()->create(['job_offer_id'=>$offer->id,
-            'status'=>''
+           Auth::user()->candidatProfile->applications()->create(['job_offer_id'=>$offer->id,
             ]);
     }
 
@@ -35,10 +37,11 @@ class Application extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function myApplies(string $id)
     {
-        //
-    }
+        $myApp = Auth::user()->candidatProfile->applications()->get();
+        return view('myApplications',compact('myApp'));
+            }
 
     /**
      * Show the form for editing the specified resource.
@@ -51,9 +54,14 @@ class Application extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function acceptApp(Application $application)
     {
+        $application->update(['status' => 'accepted']);
         //
+    }
+    public function declineApp(Application $application)
+    {
+        $application->update(['status' => 'declined']);
     }
 
     /**

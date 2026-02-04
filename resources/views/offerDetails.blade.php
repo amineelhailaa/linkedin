@@ -36,6 +36,7 @@
                     <h2 class="text-lg font-semibold mb-2">Description</h2>
                     <p class="text-slate-700 leading-relaxed">{{ $offer->description }}</p>
                 </div>
+                <button>Apply</button>
             </div>
         </div>
     </div>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('candidat_profile_id')->constrained()->cascadeOnDelete();
             $table->foreignId('job_offer_id')->constrained()->cascadeOnDelete();
-            $table->enum('status',['pending','declined','accepted']);
+            $table->enum('status',['pending','declined','accepted'])->default('pending');
             $table->timestamps();
             $table->unique(['candidat_profile_id','job_offer_id']);
         });

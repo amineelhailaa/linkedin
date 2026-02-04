@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use App\Http\Controllers\JobOfferController;
+use App\Models\JobOffer;
 
 Route::get('/', function () {
     return view('home');
@@ -41,8 +42,15 @@ Route::post('/create_offer',[JobOfferController::class,'store'])->name('jobCreat
 Route::get('/offers',[JobOfferController::class,'index'])->name('offers');
 //recruteur his offers
 Route::get('/dashboard/offers',[JobOfferController::class,'myoffers'])->name('myoffers');
+//offer detail for recrutor tosee the applications
+Route::get('/dashboard/offers/{offer}',[JobOfferController::class,'offerDetailsRecruter']);
 //offer details ( for both plz )
 Route::get('/offer/{offer}/detail',[JobOfferController::class,'offerDetails'])->name('offer_detail');
+
+
+Route::get('/amine/{offer}',function(JobOffer $offer){
+        dd($offer);
+});
 
 
 

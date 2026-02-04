@@ -19,7 +19,7 @@ class JobOfferController extends Controller
     }
 
 
-    
+
         public function myoffers(){
             $offers = Auth::user()->recruteurProfile->jobOffers()->latest()->get();
             return view('myoffers',compact('offers'));
@@ -27,12 +27,41 @@ class JobOfferController extends Controller
         }
 
 
-        //offer details 
-
-        public function offerDetails
-        (JobOffer $offer){
+        //offer details
+        // need one for recruter that will include the applications;
+        public function offerDetails(JobOffer $offer){
             return view('offerDetails',compact('offer'));
         }
+
+
+
+
+        public function offerDetailsRecruter($offer){
+            if ($offer->recruteur_profile_id !== Auth::id()) {
+                abort(404);
+            }
+            //wtf
+           // if(Auth::user()->recruteurProfile->jobOffers()->where('id', $offer)->get() !== null) {
+           //  abort(404);
+           // }
+           $applies =  $offer->with('applications.candidatProfile')->get();
+           return view('recruteur.offerDetails',compact('offer','applies'));
+        }
+
+
+now i want you to create a view in the view recruteur folder for showing detail of the order and the applications of that folder
+
+
+
+
+
+
+
+
+
+
+
+
 
         //
 

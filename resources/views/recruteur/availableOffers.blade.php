@@ -42,6 +42,14 @@
                                 {{ $job->contrat }}
                             </span>
                         </div>
+                        <div class="mt-4">
+                            <a
+                                href="{{ route('offer_detail', $job->id) }}"
+                                class="text-sm font-semibold text-slate-700 hover:text-slate-900"
+                            >
+                                View details &rarr;
+                            </a>
+                        </div>
 
                     </div>
                 @endforeach
