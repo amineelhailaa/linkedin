@@ -21,7 +21,7 @@ class JobOfferController extends Controller
 
     
         public function myoffers(){
-            $offers = Auth::user()->recruteurProfile->jobOffers();
+            $offers = Auth::user()->recruteurProfile->jobOffers()->latest()->get();
             return view('myoffers',compact('offers'));
 
         }
