@@ -27,8 +27,6 @@ Route::get('/profile/{id}',[ProfileController::class,'discoverProfile'])->name('
 
 //edit profile my profile
 Route::middleware('auth')->group(function(){
-
-
 Route::get('/myprofile',[ProfileController::class,'myprofile'])->name('myprofile');
 
 Route::patch('/myprofile',[ProfileController::class,'update'])->name('myprofile/save');
@@ -42,6 +40,11 @@ Route::post('/create_offer',[JobOfferController::class,'store'])->name('jobCreat
 //candiat browse offers
 Route::get('/offers',[JobOfferController::class,'index'])->name('offers');
 //recruteur his offers
-Route::get('/dashboard/offers',[JobOfferController::class,'myoffers']);
+Route::get('/dashboard/offers',[JobOfferController::class,'myoffers'])->name('myoffers');
 //offer details ( for both plz )
 Route::get('/offer/{offer}/detail',[JobOfferController::class,'offerDetails'])->name('offer_detail');
+
+
+
+
+
