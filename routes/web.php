@@ -43,16 +43,17 @@ Route::get('/offers',[JobOfferController::class,'index'])->name('offers');
 //recruteur his offers
 Route::get('/dashboard/offers',[JobOfferController::class,'myoffers'])->name('myoffers');
 //offer detail for recrutor tosee the applications
-Route::get('/dashboard/offers/{offer}',[JobOfferController::class,'offerDetailsRecruter']);
+Route::get('/dashboard/offers/{offer}',[JobOfferController::class,'offerDetailsRecruter'])->name('R_detail_offer');
 //offer details ( for both plz )
 Route::get('/offer/{offer}/detail',[JobOfferController::class,'offerDetails'])->name('offer_detail');
 
 
-Route::get('/amine/{offer}',function(JobOffer $offer){
-        dd($offer);
-});
 
-
+//apply
+Route::get('/offer/{offer}/apply',[\App\Http\Controllers\ApplicationController::class,'apply'])->name('apply');
+//decline
+Route::get('/offers/{application}/decline',[\App\Http\Controllers\ApplicationController::class,'declineApp']);
+Route::get('/offers/{application}/accept',[\App\Http\Controllers\ApplicationController::class,'acceptApp']);
 
 
 
