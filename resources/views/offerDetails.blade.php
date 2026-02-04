@@ -27,8 +27,8 @@
                 <div class="flex items-center gap-3 text-sm">
                     <span class="px-3 py-1 rounded-full
                         {{ $offer->status === 'open' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
-                        {{ ucfirst($offer->status) }}
-                    </span>
+'[[[                        {{ ucfirst($offer->status) }}
+]]]'                    </span>
                     <span class="text-slate-500">{{ $offer->contrat }}</span>
                 </div>
 
@@ -36,8 +36,8 @@
                     <h2 class="text-lg font-semibold mb-2">Description</h2>
                     <p class="text-slate-700 leading-relaxed">{{ $offer->description }}</p>
                 </div>
-                <button>Apply</button>
-            </div>
+                <button type=""><a href="{{route('apply',$offer->id)}}">Apply</a></button>
+              </div>
         </div>
     </div>
 </x-structure>
