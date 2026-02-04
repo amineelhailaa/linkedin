@@ -45,7 +45,7 @@
 
                         <div class="mt-4">
                             <a
-                                href="{{ route('offer_detail', $offer->id) }}"
+                                href="{{ route('R_detail_offer', $offer->id) }}"
                                 class="text-sm font-semibold text-slate-700 hover:text-slate-900"
                             >
                                 View details &rarr;
