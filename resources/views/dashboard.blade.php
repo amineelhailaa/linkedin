@@ -54,20 +54,21 @@
             <span>Mon réseau</span>
             <span class="absolute -bottom-[1px] left-1/2 h-[2px] w-10 -translate-x-1/2 bg-slate-900"></span>
           </a>
-
-          <a href="#" class="group flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
+            @if(Auth::user()->type == "candidat")
+          <a href="{{route('myapplies')}}" class="group flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3 7h18v13H3z"/><path d="M7 7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2" fill="currentColor"/></svg>
             <span>Emplois</span>
           </a>
+            @endif
 
-          <a href="#" class="group flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
+          <a href="{{route('invitations')}}" class="group flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
             <span>Messagerie</span>
           </a>
 
-          <a href="#" class="group relative flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
+          <a href="{{route('friends')}}" class="group relative flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a2 2 0 0 0 2-2H10a2 2 0 0 0 2 2z"/><path d="M18 16v-5a6 6 0 1 0-12 0v5l-2 2h16l-2-2z"/></svg>
-            <span>Notifications</span>
+            <span>Friends</span>
             <span class="absolute right-5 top-1.5 grid h-4 min-w-[16px] place-items-center rounded-full bg-red-600 px-1 text-[10px] font-bold text-white">5</span>
           </a>
 
@@ -217,16 +218,17 @@
                         </div>
                         <span>Youness et 4 autres relations en commun</span>
                       </div>
-
+                        <form action="{{route('sendInv',$user->id)}}" method="post"  >
+                            @csrf
                       <button
-                        type="button"
+                        type="submit"
                         class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#0A66C2] px-3 py-2 text-sm font-semibold text-[#0A66C2] hover:bg-[#0A66C2]/5"
                       >
                         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M15 12a4 4 0 1 0-8 0v2H5a2 2 0 0 0-2 2v3h16v-3a2 2 0 0 0-2-2h-2v-2z"/>
-                        </svg>
-                        Se connecter
+                        </svg>Se connecter</a>
                       </button>
+                        </form>
                     </div>
                   </article>
                 @empty
@@ -247,7 +249,7 @@
 
     {{-- Floating message pill --}}
     <div class="fixed bottom-4 right-4 z-40 hidden sm:block">
-      <button type="button" class="flex items-center gap-3 rounded-lg border border-black/10 bg-white px-4 py-3 shadow-lg">
+      <button type="button"  class="flex items-center gap-3 rounded-lg border border-black/10 bg-white px-4 py-3 shadow-lg">
         <span class="h-8 w-8 rounded-full bg-slate-300"></span>
         <span class="text-sm font-semibold text-slate-800">Messagerie</span>
       </button>
