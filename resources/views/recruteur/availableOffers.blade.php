@@ -2,19 +2,30 @@
 
     <div class="max-w-6xl mx-auto p-6">
 
-        <h1 class="text-2xl font-bold mb-6">Job Offers</h1>
+        <div class="flex flex-col gap-4 mb-6 md:flex-row md:items-center md:justify-between">
+            <h1 class="text-2xl font-bold">Job Offers</h1>
+            <form method="GET" action="">
+                <input
+                    type="search"
+                    name="keyword"
+                    value="{{ request('query') }}"
+                    placeholder="Search offers..."
+                    class="w-full md:w-64 rounded-xl border border-slate-200 px-4 py-2 text-sm focus:border-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-200"
+                >
+            </form>
+        </div>
 
         @if ($jobs->isEmpty())
             <p class="text-gray-500">No job offers available.</p>
         @else
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
+
                 @foreach ($jobs as $job)
                     <div class="border rounded-xl p-4 shadow hover:shadow-lg transition">
 
                         @if ($job->image)
-                            <img 
-                                src="{{ asset('storage/' . $job->image) }}" 
+                            <img
+                                src="{{ asset('storage/' . $job->image) }}"
                                 alt="Job image"
                                 class="w-full h-40 object-cover rounded-lg mb-4"
                             >
