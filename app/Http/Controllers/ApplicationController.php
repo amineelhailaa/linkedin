@@ -22,7 +22,7 @@ class ApplicationController extends Controller
      */
     public function apply(JobOffer $offer)
     {
-           Auth::user()->candidatProfile->applications()->create(['job_offer_id'=>$offer->id,
+           Auth::user()->candidatProfile->applications()->firstOrCreate(['job_offer_id'=>$offer->id,
             ]);
     }
 
@@ -37,10 +37,10 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function myApplies(string $id)
+    public function myApplies()
     {
         $myApp = Auth::user()->candidatProfile->applications()->get();
-        return view('myApplications',compact('myApp'));
+        return view('candidat.myapplications', compact('myApp'));
             }
 
     /**
@@ -57,11 +57,12 @@ class ApplicationController extends Controller
     public function acceptApp(Application $application)
     {
         $application->update(['status' => 'accepted']);
-        //
+        return redirect()->back();
     }
     public function declineApp(Application $application)
     {
         $application->update(['status' => 'declined']);
+        return redirect()->back();
     }
 
     /**
