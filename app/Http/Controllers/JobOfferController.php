@@ -11,10 +11,16 @@ class JobOfferController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+
         //
-       $offers = JobOffer::all();
+        $offers =null;
+        if($request->filled('keyword')){
+            $offers = JobOffer::where("titre", 'LIKE', "%{$request->keyword}%")->get();
+        } else {
+            $offers = JobOffer::all();
+        }
        return view('recruteur.availableOffers',["jobs"=>$offers]);
     }
 
@@ -38,7 +44,6 @@ class JobOfferController extends Controller
 
         public function offerDetailsRecruter(JobOffer $offer){
 
-
             if ($offer->recruteur_profile_id != Auth::user()->recruteurProfile->id) {
                 abort(404);
             }
@@ -46,7 +51,7 @@ class JobOfferController extends Controller
            // if(Auth::user()->recruteurProfile->jobOffers()->where('id', $offer)->get() !== null) {
            //  abort(404);
            // }
-           $applies =  $offer->applications()->with('candidatProfile.user')->get();
+           $applies =  $offer->applications()->with('candidatProfile.user')->where('status','pending')->get();
            return view('recruteur.offerDetails',compact('offer','applies'));
         }
 
@@ -133,7 +138,6 @@ class JobOfferController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         $job = JobOffer::where('id',$id)->update(['status'=>'closed']);
         return redirect(route('i need route here boy'));
     }
