@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -62,11 +61,15 @@ class RegisteredUserController extends Controller
             $user->recruteurProfile()->create([
                 'entreprise'=>$request->entreprise
             ]);
+
+            $user->assignRole('recruteur');
+
         } elseif ($user->type == 'candidat'){
             $user->candidatProfile()->create([
                 'specialite'=> $request->specialite,
                 'profile_title'=> $request->profile_title
             ]);
+            $user->assignRole('candidat');
         }
         event(new Registered($user));
 
