@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function(){
     Route::post('/sendInv/{id}',[\App\Http\Controllers\FriendshipController::class,'store'])->name('sendInv');
 //friend list
     Route::get('/friend_list',[\App\Http\Controllers\FriendshipController::class,'show'])->name('friends');
+    Route::get('/conversations',[\App\Http\Controllers\ChatController::class,'index'])->name('myconv');
+    Route::post('/conversations/start',[\App\Http\Controllers\ChatController::class,'start'])->name('conversations.start');
+    Route::get('/conversations/{conversation}',[\App\Http\Controllers\ChatController::class,'show'])->name('conversations.show');
+    Route::post('/conversations/{conversation}/messages',[\App\Http\Controllers\ChatController::class,'store'])->name('conversations.messages.store');
 });
 
 //routes that available for recruteur
@@ -75,8 +79,6 @@ Route::middleware(['auth','role:candidat'])->group(function(){
 //myapplies
     Route::get('/myapplies',[\App\Http\Controllers\ApplicationController::class,'myApplies'])->name('myapplies');
 });
-
-
 
 
 

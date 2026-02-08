@@ -72,5 +72,15 @@ class User extends Authenticatable
         return $this->hasMany(Friendship::class,'receiver_id');
     }
 
+    public function conversationsAsUserOne(): HasMany
+    {
+        return $this->hasMany(Conversation::class,'user_one_id');
+    }
+
+    public function conversationsAsUserTwo(): HasMany
+    {
+        return $this->hasMany(Conversation::class,'user_two_id');
+    }
+
 
 }

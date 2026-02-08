@@ -44,9 +44,9 @@
 
         {{-- Center: nav icons --}}
         <nav class="ml-auto flex items-center gap-2 sm:gap-4">
-          <a href="#" class="group flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
+          <a href="{{route('myconv')}}" class="group flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-600 hover:text-slate-900">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 7v11a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10l9-7z"/></svg>
-            <span>Accueil</span>
+            <span>Conversations</span>
           </a>
 
           <a href="#" class="group relative flex w-16 flex-col items-center justify-center gap-1 text-[11px] text-slate-900">
@@ -228,6 +228,19 @@
                           <path d="M15 12a4 4 0 1 0-8 0v2H5a2 2 0 0 0-2 2v3h16v-3a2 2 0 0 0-2-2h-2v-2z"/>
                         </svg>Se connecter</a>
                       </button>
+                        </form>
+                        <form action="{{ route('conversations.start') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="other_user_id" value="{{ $user->id }}">
+                            <button
+                                type="submit"
+                                class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
+                            >
+                                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/>
+                                </svg>
+                                Message
+                            </button>
                         </form>
                     </div>
                   </article>
