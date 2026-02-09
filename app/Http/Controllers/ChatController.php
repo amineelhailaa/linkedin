@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSent;
 use App\Models\Conversation;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -68,10 +69,12 @@ class ChatController extends Controller
             'text' => ['required', 'string', 'max:2000'],
         ]);
 
-        $conversation->messages()->create([
+        $message = $conversation->messages()->create([
             'sender_id' => $authId,
             'text' => $data['text']
         ]);
+
+        event(new MessageSent($message));
 
         return redirect()->route('conversations.show', $conversation->id);
     }

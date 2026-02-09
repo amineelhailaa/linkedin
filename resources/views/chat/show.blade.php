@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="space-y-3 mb-6">
+        <div id="messages" data-conversation-id="{{$conversation->id}}" class="space-y-3 mb-6">
             @forelse ($messages as $message)
                 @php($isMine = $message->sender_id === $authId)
                 <div class="flex {{ $isMine ? 'justify-end' : 'justify-start' }}">
@@ -56,4 +56,5 @@
             </button>
         </form>
     </div>
+    @vite('resources/js/conversation.js')
 </x-structure>
